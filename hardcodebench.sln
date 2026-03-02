@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "terraforming", "terraforming\terraforming.csproj", "{F1A5AFBD-57CA-9A46-FD2E-7F6C8FE2FA16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "terraforming", "AgentContext\terraforming\terraforming.csproj", "{F1A5AFBD-57CA-9A46-FD2E-7F6C8FE2FA16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tester", "tester\tester.csproj", "{EB41200D-3215-41D9-B202-130D4D414BF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tester", "AgentContext\tester\tester.csproj", "{EB41200D-3215-41D9-B202-130D4D414BF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testSolve", "AgentContext\testSolve\testSolve.csproj", "{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "referenceSolve", "referenceSolve\referenceSolve.csproj", "{6491311B-CF74-442E-A9B7-C8B12A59A4FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,30 @@ Global
 		{EB41200D-3215-41D9-B202-130D4D414BF3}.Release|x64.Build.0 = Release|Any CPU
 		{EB41200D-3215-41D9-B202-130D4D414BF3}.Release|x86.ActiveCfg = Release|Any CPU
 		{EB41200D-3215-41D9-B202-130D4D414BF3}.Release|x86.Build.0 = Release|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Debug|x64.Build.0 = Debug|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Debug|x86.Build.0 = Debug|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Release|x64.ActiveCfg = Release|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Release|x64.Build.0 = Release|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Release|x86.ActiveCfg = Release|Any CPU
+		{D0878C2A-3E59-4FF6-8D24-633F2D582CBA}.Release|x86.Build.0 = Release|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Debug|x64.Build.0 = Debug|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Debug|x86.Build.0 = Debug|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Release|x64.ActiveCfg = Release|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Release|x64.Build.0 = Release|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Release|x86.ActiveCfg = Release|Any CPU
+		{6491311B-CF74-442E-A9B7-C8B12A59A4FF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

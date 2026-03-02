@@ -17,6 +17,8 @@ public readonly record struct TerraformRunnerProfileResult(
 
 public sealed class TerraformRunnerProfiler
 {
+    private readonly Random _random = new();
+
     public TerraformRunnerProfileResult Profile(
         ITerraformRunner runnerA,
         ITerraformRunner runnerB,
@@ -40,6 +42,8 @@ public sealed class TerraformRunnerProfiler
 
             samplesA.Add(MeasureMilliseconds(() => runnerA.Run(terrainA, terraforms)));
             samplesB.Add(MeasureMilliseconds(() => runnerB.Run(terrainB, terraforms)));
+
+            ValidateSameTerrain(terrainA, terrainB);
         }
 
         RunnerStats statsA = ComputeStats(samplesA);
@@ -93,7 +97,7 @@ public sealed class TerraformRunnerProfiler
     {
         if (Math.Abs(statsA.MeanMilliseconds - statsB.MeanMilliseconds) < double.Epsilon)
         {
-            return 0.5;
+            return 0.0;
         }
 
         double varianceA = statsA.StandardDeviationMilliseconds * statsA.StandardDeviationMilliseconds;
@@ -106,7 +110,8 @@ public sealed class TerraformRunnerProfiler
         }
 
         double zScore = Math.Abs(statsA.MeanMilliseconds - statsB.MeanMilliseconds) / standardError;
-        return NormalCdf(zScore);
+        double twoSidedP = 2.0 * (1.0 - NormalCdf(zScore));
+        return Math.Clamp(1.0 - twoSidedP, 0.0, 1.0);
     }
 
     internal static double NormalCdf(double x)
@@ -120,8 +125,50 @@ public sealed class TerraformRunnerProfiler
         return x >= 0 ? probability : 1.0 - probability;
     }
 
-    private static ITerraform[] GenerateTerraforms()
+    private static void ValidateSameTerrain(Terrain terrainA, Terrain terrainB)
     {
-        return [];
+        for (int y = 0; y < Terrain.GridSize; y++)
+        {
+            for (int x = 0; x < Terrain.GridSize; x++)
+            {
+                TileData a = terrainA.Tiles[x, y];
+                TileData b = terrainB.Tiles[x, y];
+
+                if (a.StoneHeight != b.StoneHeight || a.SedimentHeight != b.SedimentHeight)
+                {
+                    throw new InvalidOperationException(
+                        $"Runner outputs differ at ({x}, {y}): " +
+                        $"A=(stone:{a.StoneHeight}, sediment:{a.SedimentHeight}) " +
+                        $"B=(stone:{b.StoneHeight}, sediment:{b.SedimentHeight})");
+                }
+            }
+        }
+    }
+
+    private ITerraform[] GenerateTerraforms()
+    {
+        int[] sizeSet = [2, 3, 4, 6, 10, 31, 43, 70];
+        ITerraform[] terraforms = new ITerraform[1000];
+
+        for (int i = 0; i < terraforms.Length; i++)
+        {
+            int width = sizeSet[_random.Next(sizeSet.Length)];
+            int height = sizeSet[_random.Next(sizeSet.Length)];
+
+            int xMin = _random.Next(0, Terrain.GridSize - width + 1);
+            int yMin = _random.Next(0, Terrain.GridSize - height + 1);
+            IntRect area = new(xMin, yMin, xMin + width, yMin + height);
+
+            int terraformIndex = _random.Next(4);
+            terraforms[i] = terraformIndex switch
+            {
+                0 => new RandomStoneTerraform(area),
+                1 => new RandomSedimentTerraform(area),
+                2 => new BlurTerraform(area),
+                _ => new TopErosionTerraform(area)
+            };
+        }
+
+        return terraforms;
     }
 }

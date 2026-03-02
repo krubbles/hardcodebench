@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch tester",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/AgentContext/tester/bin/Debug/net10.0/tester.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/AgentContext/tester",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+  ]
+}

@@ -14,6 +14,11 @@ public class RandomStoneTerraform : ITerraform
 {
     public IntRect Area { get; }
 
+    public RandomStoneTerraform(IntRect area)
+    {
+        Area = area;
+    }
+
     public void Apply(Terrain terrain)
     {
         for (int y = Area.YMin; y < Area.YMax; y++)
@@ -27,6 +32,11 @@ public class RandomStoneTerraform : ITerraform
 public class RandomSedimentTerraform : ITerraform
 {
     public IntRect Area { get; }
+
+    public RandomSedimentTerraform(IntRect area)
+    {
+        Area = area;
+    }
 
     public void Apply(Terrain terrain)
     {
@@ -110,6 +120,11 @@ public class BlurTerraform : ITerraform
 public class TopErosionTerraform : ITerraform
 {
     public IntRect Area { get; }
+
+    public TopErosionTerraform(IntRect area)
+    {
+        Area = area;
+    }
 
     public void Apply(Terrain terrain)
     {
